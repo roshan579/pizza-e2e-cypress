@@ -1,0 +1,14 @@
+<nav class="sidebar">
+    <ul class="sidebar-list">
+        <li
+            *ngFor="let tab of sidebar">
+            <a 
+                class="item"
+                [routerLink]="tab.url"
+                routerLinkActive="active">
+                <img src="/assets/img/{{ tab.icon }}">
+                {{ tab.name }}
+            </a>
+        </li>
+    </ul>
+</nav>

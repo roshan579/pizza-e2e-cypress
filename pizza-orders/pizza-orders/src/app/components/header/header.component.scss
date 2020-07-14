@@ -1,0 +1,76 @@
+@import '../../../sass/typography';
+
+.top-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  width: 100%;
+  max-width: 1325px;
+  margin: 0 auto;
+  padding-top: 16px;
+}
+.brand {
+  display: grid;
+  grid-template-columns: 57px auto;
+  grid-column-gap: 13px;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.logo-img {
+  z-index: -1;
+}
+.logo {
+  width: 57px;
+  height: 57px;
+  border-radius: 50%;
+  background-color: #467fbe;
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: calc(57px/1.7) solid #15335c;
+  }
+}
+.name {
+  font-family: $main-font;
+  color: #fff;
+}
+.main {
+  font-size: 30px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.sub {
+  font-size: 20px;
+  font-weight: 100;
+  text-transform: lowercase;
+}
+.right-nav {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+}
+.top-icon {
+  color: #fff;
+  margin-left: 28px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.help {
+  display: flex;
+}
+.help-text {
+  display: flex;
+  font-family: 'Lucida Grande';
+  font-size: 12px;
+  margin-left: 6px;
+}

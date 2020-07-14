@@ -1,0 +1,50 @@
+// Styles
+@function convertPxToMms($val) {
+    @return $val * 0.2645833333mm;
+}
+.container {
+    position: relative;
+    min-height: 100vh;
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 653px;
+        width: 100%;
+        background: rgb(7,19,33);
+        background: linear-gradient(0deg, rgba(7,19,33,1) 0%, rgba(21,51,92,1) 100%);
+        z-index: -1;
+    }
+}
+.content {
+    display: grid;
+    grid-template-columns: 140px auto;
+    grid-column-gap: 40px;
+    max-width: 1325px;
+    margin: 0 auto;
+}
+.main {
+    display: none;
+}
+@media print {
+    * {
+        color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+    @page {
+        size: letter portrait;
+        margin: convertPxToMms(55) convertPxToMms(30) convertPxToMms(71);
+        counter-increment: page;
+        @bottom-left-corner {
+            color: #000 !important;
+        }
+    }
+    .app-sidebar {
+        display: none;
+    }
+    .content {
+        grid-template-columns: auto;
+        padding: 0 25px;
+    }
+}

@@ -1,0 +1,14 @@
+{
+
+    "baseUrl": "http://localhost:4200",
+    "reporter": "mochawesome",
+    "reporterOptions":{
+        "reportDir": "cypress/reports/mocha",
+        "quiet": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "timestamp": "ddmmyyyy_HHMMss"
+    },
+    "testFiles": "**/*.feature"
+}

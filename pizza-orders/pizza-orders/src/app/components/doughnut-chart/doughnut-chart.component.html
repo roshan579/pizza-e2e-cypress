@@ -1,0 +1,25 @@
+<div class="chart animation">
+    <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+        <g>
+        <circle
+            r="69.85699"
+            cy="81"
+            cx="81"
+            stroke-width="8"
+            stroke="#E8E8E8"
+            fill="none"/>
+        <circle
+            class="circle-animation"
+            [ngClass]="type"
+            r="69.85699"
+            cy="81"
+            cx="81"
+            stroke-width="12"
+            [attr.stroke]="color"
+            fill="none" />
+        </g>
+    </svg>
+    <div class="value">
+        {{ value }}
+    </div>
+</div>

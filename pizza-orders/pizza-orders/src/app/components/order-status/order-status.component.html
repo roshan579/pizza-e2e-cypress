@@ -1,0 +1,120 @@
+ <main class="content">
+    <section class="content-label">
+        <div class="main-label">
+            Order Management
+        </div>
+        <div class="sub-label">
+            Manage your orders here and get an overview of status
+        </div>
+    </section>
+
+    <section
+        class="main-content"
+        *ngIf="orders">
+        <div class="table-summary">
+            <div class="header">
+                <div class="label">
+                    Total items in inventory
+                </div>
+                <button
+                    class="btn print"
+                    (click)="printSummary()">
+                    Print Summary
+                </button>
+            </div>
+            <div class="items-count">
+                <div class="count-total">
+                    <span class="number">{{ getTotalInventory().toLocaleString() }}</span> items
+                </div>
+                <div class="count-bar">
+                    <span class="bar green"></span>
+                    <span class="bar blue"></span>
+                    <span class="bar red"></span>
+                </div>
+            </div>
+        </div>
+        <div class="count-details">
+            <div class="block">
+                <span class="dot green"></span>
+                <span class="label">Completed</span>
+                <span class="num">{{ inventory.completed }}</span>
+            </div>
+            <div class="block">
+                <span class="dot blue"></span>
+                <span class="label">Pending</span>
+                <span class="num">{{ inventory.pending }}</span>
+            </div>
+            <div class="block">
+                <span class="dot red"></span>
+                <span class="label">Cancelled</span>
+                <span class="num">{{ inventory.cancelled }}</span>
+            </div>
+        </div>
+
+        <section class="table">
+            <div class="table-header table-grid">
+                <div class="table-col">Item ID</div>
+                <div class="table-col">Address</div>
+                <div class="table-col">Ordered Time</div>
+                <div class="table-col">Status / Action</div>
+                <div class="table-col"></div>
+            </div>
+            <div
+                class="table-body table-grid"
+                [ngClass]="{ 'odd' : odd }"
+                *ngFor="let order of orders; let i = index; let odd = odd">
+                <div class="table-col item-id">{{ order.id }}</div>
+                <div class="table-col">{{ order.address }}</div>
+                <div class="table-col">
+                    {{
+                        i > 8 ?
+                        (order._duration === 0 ? 'a few seconds ago ' :
+                        (order._duration === 1 ? order._duration + ' minute ago'
+                        : order._duration + ' minutes ago'))
+                        : order.time
+                    }}
+                </div>
+                <div class="table-col">
+                    <span class="accept"
+                        *ngIf="isNewOrder(order)"
+                        (click)="accept(order)">
+                        Accept
+                    </span>
+                    <span
+                        class="cancel"
+                        *ngIf="isNewOrder(order)"
+                        (click)="cancel(order)">
+                        Cancel
+                    </span>
+                    <span
+                        class="accepted"
+                        *ngIf="order.accepted && !order.completed">
+                        Accepted
+                    </span>
+                    <span
+                        class="in-transit"
+                        *ngIf="order.transit && !order.completed">
+                        In-Transit
+                    </span>
+                    <span
+                        class="completed"
+                        *ngIf="order.completed">
+                        Completed
+                    </span>
+                    <span
+                        class="canceled"
+                        *ngIf="order.canceled">
+                        Cancelled
+                    </span>
+                </div>
+                <div
+                    class="table-col mark-completed"
+                    *ngIf="(order.accepted || order.transit) && !order.completed"
+                    (click)="markCompleted(order)">
+                    Mark as Completed
+                </div>
+            </div>
+        </section>
+
+    </section>
+</main>

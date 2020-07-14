@@ -1,0 +1,44 @@
+// Credit to https://stackoverflow.com/questions/20525820/css3-simple-donut-chart/28345637
+// Modified version
+
+.chart {
+    position: relative;
+}
+svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+}
+.circle-animation {
+    border-radius: 50%;
+    box-shadow: 0 1px 2px 3px rgba(0, 0, 0, 0.5);
+    position: relative;
+    stroke-dasharray: 440;
+    stroke-dashoffset: 440;
+}
+.animation .circle-animation {
+    &.green {
+        animation: green-anim 1s ease-out forwards;
+    }
+    &.red {
+        animation: red-anim 1s ease-out forwards;
+    }
+}
+@keyframes green-anim {
+    to {
+        stroke-dashoffset: 110;
+    }
+}
+@keyframes red-anim {
+    to {
+        stroke-dashoffset: 330;
+    }
+}
+.value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 500;
+}

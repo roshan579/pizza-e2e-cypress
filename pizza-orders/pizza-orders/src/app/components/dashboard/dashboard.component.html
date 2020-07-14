@@ -1,0 +1,70 @@
+<main
+    class="dashboard"
+    *ngIf="dashboard && orderStatus">
+    <div class="top-section">
+        <section class="delivery-status">
+            <div class="title">Delivery Status</div>
+            <div class="label">Total Orders</div>
+            <div class="total-orders">{{ dashboard.status.total }}</div>
+            <div class="charts">
+                <div class="left-pie-chart">
+                    <app-doughnut-chart
+                        class="chart green-outline"
+                        [value]="dashboard.status.delivered"
+                        [total]="150"
+                        [type]="'green'"
+                        [color]="'#24ccb8'">
+                    </app-doughnut-chart>
+                    <caption class="chart-label">Orders Delivered</caption>
+                </div>
+                <div class="right-pie-chart">
+                    <app-doughnut-chart
+                        class="chart red-outline"
+                        [value]="dashboard.status.pending"
+                        [total]="150"
+                        [type]="'red'"
+                        [color]="'#ff5660'">
+                    </app-doughnut-chart>
+                    <caption class="chart-label">Pending Delivery</caption>
+                </div>
+            </div>
+        </section>
+        <section class="total-sales">
+            <div class="title">Total Sales</div>
+            <div class="currency">{{ dashboard.sales.currency }}</div>
+            <div class="total">{{ dashboard.sales.total.toLocaleString() }}</div>
+        </section>
+    </div>
+    
+    <div class="bottom-section">
+        <section class="order-history">
+            <caption class="chart-label">Order History</caption>
+            <div class="chart">
+                <app-line-chart
+                    [history]="dashboard.history">
+                </app-line-chart>
+            </div>
+        </section>
+        <section class="report">
+            <div class="title">Report</div>
+            <div class="deliveries">
+                <div class="on-time">
+                    <div class="label">Ontime Delivery</div>
+                    <div class="val">{{ dashboard.report.ontime }}</div>
+                    <div class="progress-bar green"></div>
+                </div>
+                <div class="late-deliveries">
+                    <div class="label">Late Deliveries</div>
+                    <div class="val">{{ dashboard.report.late }}</div>
+                    <div class="progress-bar red"></div>
+                </div>
+            </div>
+            <div class="performance">
+                <div class="label">Performance</div>
+                <div class="performance-percent">
+                    {{ dashboard.report.performance }}
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
